@@ -4,20 +4,30 @@ import domain.*;
 
 public class DataBaseFacade {
 
-    private static UpdatingOrderMapperInterface om; 
-    private static DataBaseFacade instance;
+    private static PushOrderMapperInterface pushOrdMap;
+    private static PullOrderMapperInterface pullOrdMap;
+    //private static DataBaseFacade instance; Useless for now.
     
     public DataBaseFacade() {
-        om = new UpdatingOrderMapper(DataBaseConnection.getConnection());
+        pushOrdMap = new PushOrderMapper(DataBaseConnection.getConnection());
+        pullOrdMap = new PullOrderMapper(DataBaseConnection.getConnection());
     }
 
-    public DataBaseFacade(UpdatingOrderMapperInterface orm){
-      om = orm;
+    public boolean creatingNewClient(Client client) {
+        return pushOrdMap.saveNewClient(client);
+    }
+    
+    public boolean addPrivateInfo(Client client) {
+        return pushOrdMap.addPrivateInfo(client);
     }
 
-    public boolean saveNewClient(Client client) {
-        return om.saveNewClient(client);
+    public Client getParticularClient(int client_no)
+    {
+        return pullOrdMap.getClientTBLinfo(client_no);
     }
-
-
+    
+    public Client getParticularClientPrivateInf(int client_no)
+    {
+        return pullOrdMap.getClientprivinfTBLinfo(client_no);
+    }
 }
