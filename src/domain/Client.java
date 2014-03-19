@@ -6,12 +6,26 @@ public class Client {
     private String client_name;
     private String client_surname;
     private String client_address;
+    private int client_passport;
+    private String client_country;
+    private int client_phone;
+    private String client_email;
+    private String client_agency;
 
     public Client(int client_no, String client_name, String client_surname, String client_address) {
         this.client_no = client_no;
         this.client_name = client_name;
         this.client_surname = client_surname;
         this.client_address = client_address;
+    }
+
+    public Client(int client_no, int client_passport, String client_country, int client_phone, String client_email, String client_agency) {
+        this.client_no = client_no;
+        this.client_passport = client_passport;
+        this.client_country = client_country;
+        this.client_phone = client_phone;
+        this.client_email = client_email;
+        this.client_agency = client_agency;
     }
 
     public int getClient_no() {
@@ -46,8 +60,52 @@ public class Client {
         this.client_address = client_address;
     }
 
+    public int getClient_passport() {
+        return client_passport;
+    }
+
+    public void setClient_passport(int client_passport) {
+        this.client_passport = client_passport;
+    }
+
+    public String getClient_country() {
+        return client_country;
+    }
+
+    public void setClient_country(String client_country) {
+        this.client_country = client_country;
+    }
+
+    public int getClient_phone() {
+        return client_phone;
+    }
+
+    public void setClient_phone(int client_phone) {
+        this.client_phone = client_phone;
+    }
+
+    public String getClient_email() {
+        return client_email;
+    }
+
+    public void setClient_email(String client_email) {
+        this.client_email = client_email;
+    }
+
+    public String getClient_agency() {
+        return client_agency;
+    }
+
+    public void setClient_agency(String client_agency) {
+        this.client_agency = client_agency;
+    }
+
     @Override
     public String toString() {
         return "Client{" + "client_no=" + client_no + ", client_name=" + client_name + ", client_surname=" + client_surname + ", client_address=" + client_address + '}';
+    }
+
+    public String toString2() {
+        return "Client{" + "client_no=" + client_no + ", client_passport=" + client_passport + ", client_country=" + client_country + ", client_phone=" + client_phone + ", client_email=" + client_email + ", client_agency=" + client_agency + '}';
     }
 }
