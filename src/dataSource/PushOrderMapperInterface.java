@@ -1,6 +1,7 @@
 package dataSource;
 
 import domain.Client;
+import domain.Reservation;
 
 public interface PushOrderMapperInterface {
 

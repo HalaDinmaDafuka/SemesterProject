@@ -1,6 +1,7 @@
 package dataSource;
 
 import domain.Client;
+import domain.Reservation;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
