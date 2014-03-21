@@ -2,10 +2,12 @@
 package domain;
 
 import dataSource.DataBaseFacade;
+import java.util.ArrayList;
 
 public class Controller {
     private Client currectClient;
     private Reservation currentReservation;
+    private ArrayList freeRooms;
     DataBaseFacade dbf = new DataBaseFacade();
     
     public Controller(){
@@ -23,10 +25,12 @@ public class Controller {
         }
         return currectClient;
     }
+
+
     
     public Client creatingClientPrivateInformation(int client_passport, String client_country, int client_phone, String client_email, String client_agency)
     {
-        currectClient = new Client(0, client_passport, client_country, client_phone, client_email, client_agency);
+        currectClient = new Client(currectClient.getClient_no(), client_passport, client_country, client_phone, client_email, client_agency);
         
         boolean sent = dbf.creatingClientPrivateInformation(currectClient);
         if(!sent)
@@ -36,9 +40,9 @@ public class Controller {
         return currectClient;
     }
     
-    public Reservation addNewReservation(String client_arrival, String client_departure,int client_no, int room_no)
+    public Reservation addNewReservation(String client_arrival, String client_departure,int room_no)
     {
-        currentReservation = new Reservation(0, client_arrival, client_departure, client_no, room_no);
+        currentReservation = new Reservation(0, client_arrival, client_departure, currectClient.getClient_no(), room_no);
         boolean sent = dbf.creatingNewReservation(currentReservation);
         if(!sent)
         {
@@ -65,6 +69,12 @@ public class Controller {
     {
         currentReservation =dbf.getReservationInfo(reservation_no);
         return currentReservation;
+    }
+    
+    public ArrayList<Room> getFreeRooms(String room_type)
+    {
+        freeRooms = dbf.getFreeRooms(room_type);
+        return freeRooms;
     }
     
         public void updateParticularClient(int client_no, String client_name, String client_surname, String client_address)

@@ -1,6 +1,7 @@
 package dataSource;
 
 import domain.*;
+import java.util.ArrayList;
 
 public class DataBaseFacade {
 
@@ -47,6 +48,11 @@ public class DataBaseFacade {
 
     }
 
+    //Free Rooms
+    public ArrayList<Room> getFreeRooms(String room_type) {
+        return pullOrdMap.getRoomsfromType(room_type);
+    }
+
     //Update
     public void updateParticularClient(int client_no, String client_name, String client_surname, String client_address) {
         updordmap.updateClientTBLinfo(client_no, client_name, client_surname, client_address);
@@ -59,4 +65,5 @@ public class DataBaseFacade {
     public void updateReservationInformation(int reservation_no, String client_arrival, String client_departure, int client_no, int room_no) {
         updordmap.updateReservationInformation(reservation_no, client_arrival, client_departure, client_no, room_no);
     }
+
 }
