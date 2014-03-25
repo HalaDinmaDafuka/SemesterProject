@@ -2,7 +2,7 @@
 import domain.Controller;
 
 public class Main {
-
+//BETA MAIN FOR TESTING AND OTHER SCARY THINGS (((:
     public static void main(String[] args) {
         Controller valia = new Controller();
         
@@ -12,16 +12,16 @@ public class Main {
 //      valia.getParticularClient(10000);
 //      valia.getParticularClientPrivateInf(10000);
 //        
-//       valia.addNewReservation("01-MAR-14", "03-MAR-14", 91);
+//      valia.addNewReservation("01-MAR-14", "03-MAR-14", 91);
 //      valia.getReservationInfo(10000);
-        
+//        
 //      valia.updateParticularClient(10002, "Mada", "Faka", "Odorovci");
 //      valia.updateClientPersonalInformation(10002, 12321, "Bulgaria", 213123, "boyko@abv.bg", "ahahahcahx");
 //      valia.updateReservationInformation(10000, "05-MAR-13", "10-APR-13", 10004, 23);
         
-        valia.getFreeRooms("Single Room");
-//        for (int i = 0; i < valia.getFreeRooms("Single Room").size(); i++) {
-//            valia.getFreeRooms("Single Room").get(i);
+//        valia.getFreeRooms("Single Room");
+        
+        //valia.getAllReservations();
             
         }
     }

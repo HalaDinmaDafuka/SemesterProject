@@ -102,10 +102,16 @@ public class Client {
 
     @Override
     public String toString() {
-        return "Client{" + "client_no=" + client_no + ", client_name=" + client_name + ", client_surname=" + client_surname + ", client_address=" + client_address + '}';
+        return "Name: " + client_name + "\n"
+                + "Surname: " + client_surname + "\n"
+                + "Adress: " + client_address + '}';
     }
 
     public String toString2() {
-        return "Client{" + "client_no=" + client_no + ", client_passport=" + client_passport + ", client_country=" + client_country + ", client_phone=" + client_phone + ", client_email=" + client_email + ", client_agency=" + client_agency + '}';
+        return "Passport: " + client_passport + "\n"
+                + "Country: " + client_country + "\n"
+                + "Phone: " + client_phone + "\n"
+                + "Email: " + client_email + "\n"
+                + "Agency: " + client_agency + '}';
     }
 }

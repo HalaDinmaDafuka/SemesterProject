@@ -46,7 +46,7 @@ public class Reservation {
     }
     @Override
     public String toString() {
-        return "Reservation{" + "reservation_no=" + reservation_no + ", client_arrival=" + client_arrival + ", client_departure=" + client_departure + ", client_no=" + client_no + ", room_no=" + room_no + '}';
+        return reservation_no + ", " + client_arrival + ", " + client_departure + ", " + client_no + ", " + room_no;
     }
     
     

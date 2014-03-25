@@ -3,15 +3,18 @@ package domain;
 
 import dataSource.DataBaseFacade;
 import java.util.ArrayList;
+import java.util.HashMap;
 
 public class Controller {
     private Client currectClient;
     private Reservation currentReservation;
     private ArrayList freeRooms;
+    private HashMap<Integer, Reservation> allReservations;
     DataBaseFacade dbf = new DataBaseFacade();
     
     public Controller(){
         currectClient = null;
+        currentReservation = null;
     }
     
     public Client creatingNewClient(String client_name, String client_surname, String client_address)
@@ -74,7 +77,16 @@ public class Controller {
     public ArrayList<Room> getFreeRooms(String room_type)
     {
         freeRooms = dbf.getFreeRooms(room_type);
+        //freeRooms.toString(); 
         return freeRooms;
+    }
+    
+    public HashMap<Integer, Reservation> getAllReservations() //THAT ONE IS WORKING, BUT I Don't know how to implement it!
+    {
+        allReservations = dbf.getAllReservations();
+        //allReservations.toString();
+        return allReservations;
+        
     }
     
         public void updateParticularClient(int client_no, String client_name, String client_surname, String client_address)
@@ -95,4 +107,10 @@ public class Controller {
             currentReservation = dbf.getReservationInfo(reservation_no);
             dbf.updateReservationInformation(reservation_no, client_arrival, client_departure, client_no, room_no);
         }
+        
+        //Delete
+        
+        public void deleteReservation(int reservation_no) {
+        dbf.deleteReservation(reservation_no);
+    }
 }
