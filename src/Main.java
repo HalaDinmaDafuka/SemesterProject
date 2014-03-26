@@ -22,6 +22,14 @@ public class Main {
 //        valia.getFreeRooms("Single Room");
         
         //valia.getAllReservations();
+        valia.startTheProcessOfEditingDB();
+        valia.creatingNewClient("rt", "yj", "ryj");
+        valia.creatingNewClientPrvInf(334567890, "Opida", 889904305, "Spasiba@gmail.com", "NoMoreCocaAgency");
+        valia.creatingNewReservation("02-MAR-14", "05-MAR-14", 1);
+        valia.creatingSecondaryClients("fgsh", "fhdj", "fdhj");
+        valia.creatingSecondaryClients("hhj", "hj", "7f");
+        valia.creatingNewClientPrvInf(944567890, "Skrid", 889904305, "Spasiba@gmail.com", "NoMoreCocaAgency");
+        valia.endTheProcessOfEditingDB();
             
         }
     }

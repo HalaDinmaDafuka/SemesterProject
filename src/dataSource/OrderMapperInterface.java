@@ -9,6 +9,10 @@ import java.util.HashMap;
 
 public interface OrderMapperInterface {
 
+    public int getNextClientNo();
+    
+    public int getNextRegistrationNo();
+    
     public Client getInformationFromClientTable(int client_no);
 
     public Client getInformationFromClientPrivateInformationTable(int client_no);
@@ -19,11 +23,11 @@ public interface OrderMapperInterface {
     
     public HashMap<Integer, Reservation> getAllInformationFromReservationTable();
 
-    public boolean saveInformationIntoClientTable(Client client);
+    public boolean saveInformationIntoClientTable(ArrayList<Client> clientList);
 
-    public boolean saveInformationIntoClientPrivateInformationTable(Client client);
+    public boolean saveInformationIntoClientPrivateInformationTable(ArrayList<Client> clientList);
 
-    public boolean saveInformationIntoReservationTable(Reservation reservation);
+    public boolean saveInformationIntoReservationTable(ArrayList<Reservation> clientList);
 
     public void updateInformationIntoClientTable(int client_no, String client_name, String client_surname, String client_address);
 
@@ -32,4 +36,6 @@ public interface OrderMapperInterface {
     public Client updateInformationIntoReservationTable(int reservation_no, String client_arrival, String client_departure, int client_no, int room_no);
 
     public void deleteReservation(int reservation_no);
+    
+    
 }

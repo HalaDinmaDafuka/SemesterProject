@@ -1,5 +1,6 @@
 package dataSource;
 
+import com.sun.jmx.remote.internal.ClientListenerInfo;
 import domain.Client;
 import domain.Reservation;
 import domain.Room;
@@ -18,9 +19,51 @@ public class OrderMapper implements OrderMapperInterface {
     public OrderMapper(Connection con) {
         this.connect = con;
     }
+
+    //Numbers
+    @Override
+    public int getNextClientNo() {
+        int nextClientNo = 0;
+        String SQLString
+                = "select client_no_seq.nextval  "
+                + "from dual";
+        PreparedStatement statement = null;
+        try {
+            statement = connect.prepareStatement(SQLString);
+            ResultSet rs = statement.executeQuery();
+            if (rs.next()) {
+                nextClientNo = rs.getInt(1);
+            }
+        } catch (Exception e) {
+            System.out.println("Fail in OrderMapper - getNextOrderNo");
+            System.out.println(e.getMessage());
+        }
+        return nextClientNo;
+    }
+    
+    @Override
+    public int getNextRegistrationNo() {
+        int nextOrderNumber = 0;
+        String SQLString
+                = "select reservation_no_seq.nextval  "
+                + "from dual";
+        PreparedStatement statement = null;
+        try {
+            statement = connect.prepareStatement(SQLString);
+            ResultSet rs = statement.executeQuery();
+            if (rs.next()) {
+                nextOrderNumber = rs.getInt(1);
+            }
+        } catch (Exception e) {
+            System.out.println("Fail in OrderMapper - getNextOrderNo");
+            System.out.println(e.getMessage());
+        }
+        return nextOrderNumber;
+    }
+
     //Getting Information (PULL)
     @Override
-    public Client getInformationFromClientTable(int client_no) {
+    public Client getInformationFromClientTable(int client_no) { //CHANGEZZZ
         Client client = null;
         String SQLString1 = // get order
                 "select * "
@@ -37,7 +80,8 @@ public class OrderMapper implements OrderMapperInterface {
                 client = new Client(client_no,
                         rs.getString(2),
                         rs.getString(3),
-                        rs.getString(4));
+                        rs.getString(4),
+                        rs.getInt(5));
                 //lqlq
                 System.out.println(client.toString());
             }
@@ -121,7 +165,7 @@ public class OrderMapper implements OrderMapperInterface {
                         rs.getString(2));
                 //lqlq
                 freerooms.add(room);
-                    //System.out.println(room.toString());
+                //System.out.println(room.toString());
 
             }
             //System.out.println(freerooms);
@@ -156,9 +200,9 @@ public class OrderMapper implements OrderMapperInterface {
             statement = connect.prepareStatement(SQLString1);
             statement.setInt(1, reservation_no);     // primary key value
             ResultSet rs = statement.executeQuery();
-            
+
             if (rs.next()) {
-                
+
                 reservation = new Reservation(reservation_no,
                         rs.getString(2),
                         rs.getString(3),
@@ -183,10 +227,9 @@ public class OrderMapper implements OrderMapperInterface {
         }
         return reservation;
     }
-    
-    @Override 
-    public HashMap<Integer, Reservation> getAllInformationFromReservationTable()
-    {
+
+    @Override
+    public HashMap<Integer, Reservation> getAllInformationFromReservationTable() {
         Reservation reservation = null;
         HashMap<Integer, Reservation> reservationsMap = new HashMap<Integer, Reservation>();
         String SQLString1 = // get order
@@ -208,7 +251,6 @@ public class OrderMapper implements OrderMapperInterface {
                 //lqlq
                 //reservationsArray.clear();
                 reservationsMap.put(rs.getInt(1), reservation);
-                    
 
             }
             System.out.println(reservationsMap.toString());
@@ -232,37 +274,30 @@ public class OrderMapper implements OrderMapperInterface {
 
     //Adding Information (PUSH)
     @Override
-    public boolean saveInformationIntoClientTable(Client client) {
+    public boolean saveInformationIntoClientTable(ArrayList<Client> clientList) {
         int rowsInserted = 0;
-        String SQLString1
-                = "select client_no_seq.nextval  "
-                + "from dual";
-        String SQLString2
+        String SQLString
                 = "insert into Client_TBL "
-                + "values (?,?,?,?)";
+                + "values (?,?,?,?,?)";
         PreparedStatement statement = null;
-
+        //System.out.println("hellloooo");
         try {
-            //== get unique ono
-            statement = connect.prepareStatement(SQLString1);
-            ResultSet rs = statement.executeQuery();
-
-            if (rs.next()) {
-                temp_no = rs.getInt(1);
-                client.setClient_no(temp_no);
+            for (int i = 0; i < clientList.size(); i++) {
+                Client client = clientList.get(i);
+                statement = connect.prepareStatement(SQLString);
+                statement.setInt(1, client.getClient_no());
+                statement.setString(2, client.getClient_name());
+                statement.setString(3, client.getClient_surname());
+                statement.setString(4, client.getClient_address());
+                statement.setInt(5, client.getRepresentative_no());
+                rowsInserted += statement.executeUpdate();
             }
-            //== insert tuple
-            statement = connect.prepareStatement(SQLString2);
-            statement.setInt(1, client.getClient_no());
-            statement.setString(2, client.getClient_name());
-            statement.setString(3, client.getClient_surname());
-            statement.setString(4, client.getClient_address());
-            rowsInserted = statement.executeUpdate();
         } catch (Exception e) {
-            System.out.println("Fail in OrderMapper - saveNewClient");
+            System.out.println("Fail in OrderMapper - saveNewClient HAHAHAAHAHHAHAAH");
             System.out.println(e.getMessage());
         } finally // must close statement
         {
+            System.out.println("insertOrders(): " + (rowsInserted == clientList.size()));
             try {
                 statement.close();
             } catch (SQLException e) {
@@ -270,27 +305,29 @@ public class OrderMapper implements OrderMapperInterface {
                 System.out.println(e.getMessage());
             }
         }
-        return rowsInserted == 1;
+        return rowsInserted == clientList.size();
     }
 
     @Override
-    public boolean saveInformationIntoClientPrivateInformationTable(Client client) {
+    public boolean saveInformationIntoClientPrivateInformationTable(ArrayList<Client> clientList) {
         int rowsInserted = 0;
-        String SQLString1
+        String SQLString
                 = "insert into CLIENT_PRIVATEINF_TBL "
                 + "values (?,?,?,?,?,?)";
         PreparedStatement statement = null;
 
         try {
-            //== insert tuple
-            statement = connect.prepareStatement(SQLString1);
-            statement.setInt(1, temp_no);
-            statement.setInt(2, client.getClient_passport());
-            statement.setString(3, client.getClient_country());
-            statement.setInt(4, client.getClient_phone());
-            statement.setString(5, client.getClient_email());
-            statement.setString(6, client.getClient_agency());
-            rowsInserted = statement.executeUpdate();
+            for (int i = 0; i < clientList.size(); i++) {
+                Client client = clientList.get(i);
+                statement = connect.prepareStatement(SQLString);
+                statement.setInt(1, client.getClient_no());
+                statement.setInt(2, client.getClient_passport());
+                statement.setString(3, client.getClient_country());
+                statement.setInt(4, client.getClient_phone());
+                statement.setString(5, client.getClient_email());
+                statement.setString(6, client.getClient_agency());
+                rowsInserted = statement.executeUpdate();
+            }
         } catch (Exception e) {
             System.out.println("Fail in OrderMapper - addPrivateInfo");
             System.out.println(e.getMessage());
@@ -307,36 +344,25 @@ public class OrderMapper implements OrderMapperInterface {
     }
 
     @Override
-    public boolean saveInformationIntoReservationTable(Reservation reservation) {
+    public boolean saveInformationIntoReservationTable(ArrayList<Reservation> reservationList) {
         int rowsInserted = 0;
-        int reservation_no = 0;
-        System.out.println("hello from reservation");
-        String SQLString1
-                = "select reservation_no_seq.nextval  "
-                + "from dual";
-        String SQLString2
+
+        String sqlStringInsert
                 = "insert into Reservation_TBL "
                 + "values (?,?,?,?,?)";
         PreparedStatement statement = null;
 
         try {
-            //== get unique ono
-            statement = connect.prepareStatement(SQLString1);
-            ResultSet rs = statement.executeQuery();
-
-            if (rs.next()) {
-                reservation_no = rs.getInt(1);
-                reservation.setReservation_no(reservation_no);
+            for (int i = 0; i < reservationList.size(); i++) {
+                Reservation reservation = reservationList.get(i);
+                statement = connect.prepareStatement(sqlStringInsert);
+                statement.setInt(1, reservation.getReservation_no());
+                statement.setString(2, reservation.getClient_arrival());
+                statement.setString(3, reservation.getClient_departure());
+                statement.setInt(4, reservation.getClient_no());
+                statement.setInt(5, reservation.getRoom_no());
+                rowsInserted = statement.executeUpdate();
             }
-            //== insert tuple
-            System.out.println("res no:" + reservation_no);
-            statement = connect.prepareStatement(SQLString2);
-            statement.setInt(1, reservation.getReservation_no());
-            statement.setString(2, reservation.getClient_arrival());
-            statement.setString(3, reservation.getClient_departure());
-            statement.setInt(4, reservation.getClient_no());
-            statement.setInt(5, reservation.getRoom_no());
-            rowsInserted = statement.executeUpdate();
         } catch (Exception e) {
             System.out.println("Fail in OrderMapper - addNewReservation324");
             System.out.println(e.getMessage());
@@ -454,8 +480,8 @@ public class OrderMapper implements OrderMapperInterface {
         }
         return updateClientPrivateInfo;
     }
-    
-     @Override
+
+    @Override
     public void deleteReservation(int reservation_no) {
         Reservation reservation = getInformationFromReservationTable(reservation_no);
 

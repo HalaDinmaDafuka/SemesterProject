@@ -11,6 +11,15 @@ public class Client {
     private int client_phone;
     private String client_email;
     private String client_agency;
+    private int representative_no;
+
+    public Client(int client_no, String client_name, String client_surname, String client_address, int representative_no) {
+        this.client_no = client_no;
+        this.client_name = client_name;
+        this.client_surname = client_surname;
+        this.client_address = client_address;
+        this.representative_no = representative_no;
+    }
 
     public Client(int client_no, String client_name, String client_surname, String client_address) {
         this.client_no = client_no;
@@ -100,11 +109,20 @@ public class Client {
         this.client_agency = client_agency;
     }
 
+    public int getRepresentative_no() {
+        return representative_no;
+    }
+
+    public void setRepresentative_no(int representative_no) {
+        this.representative_no = representative_no;
+    }
+
     @Override
     public String toString() {
-        return "Name: " + client_name + "\n"
+        return "User_no" + client_no + "\n"
+                + "Name: " + client_name + "\n"
                 + "Surname: " + client_surname + "\n"
-                + "Adress: " + client_address + '}';
+                + "Adress: " + client_address;
     }
 
     public String toString2() {
@@ -112,6 +130,14 @@ public class Client {
                 + "Country: " + client_country + "\n"
                 + "Phone: " + client_phone + "\n"
                 + "Email: " + client_email + "\n"
-                + "Agency: " + client_agency + '}';
+                + "Agency: " + client_agency;
+    }
+    
+    public String toString3(){
+        return "User_no" + client_no + "\n"
+                + "Name: " + client_name + "\n"
+                + "Surname: " + client_surname + "\n"
+                + "Adress: " + client_address + "\n"
+                + "Representative_no" + representative_no;
     }
 }

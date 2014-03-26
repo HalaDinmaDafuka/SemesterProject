@@ -1,29 +1,60 @@
 package dataSource;
 
 import domain.*;
+import java.sql.Connection;
 import java.util.ArrayList;
 import java.util.HashMap;
 
 public class DataBaseFacade {
 
-    private static OrderMapperInterface order;
+    private static OrderMapper order;
+    private UnitOfWork unitOfWork;
+    private Connection con;
+
+    private static DataBaseFacade dbf;
     //private static DataBaseFacade instance; Useless for now.
 
     public DataBaseFacade() {
         order = new OrderMapper(DataBaseConnection.getConnection());
+
+    }
+
+    public static DataBaseFacade getFacade() {
+
+        if (dbf == null) {
+            dbf = new DataBaseFacade();
+        }
+        return dbf;
+    }
+
+    //Numbers
+    public int getNextClientNo() {
+        return order.getNextClientNo();
+    }
+    
+    public int getReservationNo() {
+        return order.getNextRegistrationNo();
     }
 
     //Creating
-    public boolean creatingNewClient(Client client) {
-        return order.saveInformationIntoClientTable(client);
+    public void registerNewClientifUnitOfWorkIsInitialized(Client client) {
+        if (unitOfWork != null) {
+            unitOfWork.addingNewClientToArrayListOfClientsForClientTBL(client);
+
+        }
     }
 
-    public boolean creatingClientPrivateInformation(Client client) {
-        return order.saveInformationIntoClientPrivateInformationTable(client);
+    public void registerNewClientPrvInfIfUnitOfWorkIsInitialized(Client client) {
+        if (unitOfWork != null) {
+            unitOfWork.addingNewClientPrvInfToArrayListOfClientPrvInfForCLientPrvTBL(client);
+        }
     }
 
-    public boolean creatingNewReservation(Reservation reservation) {
-        return order.saveInformationIntoReservationTable(reservation);
+    public void registerNewReservationIfUnitOfWorkIsInitialized(Reservation reservation) {
+        if (unitOfWork != null) {
+            //order.saveInformationIntoReservationTable(reservation);
+            unitOfWork.addingNewRegisterToArrayListOfRegistersForRegisterTBL(reservation);
+        }
     }
 
     //Getting
@@ -61,7 +92,22 @@ public class DataBaseFacade {
         order.updateInformationIntoReservationTable(reservation_no, client_arrival, client_departure, client_no, room_no);
     }
 
-     public void deleteReservation(int reservation_no){
-      order.deleteReservation(reservation_no);
+    //Delete
+    public void deleteReservation(int reservation_no) {
+        order.deleteReservation(reservation_no);
+    }
+
+    //Save all changes Unitofwork
+    public void initializeUnitOfWorkWithOrderMapper() {
+        unitOfWork = new UnitOfWork(order);
+    }
+
+    public boolean startTheCommitMetods() {
+        boolean status = false;
+        if (unitOfWork != null) {
+            status = unitOfWork.actualCommitStatements(con);
+            unitOfWork = null;
+        }
+        return status;
     }
 }

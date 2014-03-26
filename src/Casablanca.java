@@ -24,9 +24,13 @@ public class Casablanca extends javax.swing.JFrame {
      * Creates new form Casablanca
      */
     private Controller control;
+    private int addGuests = 0;
+    private int noofGuests;
+    private boolean finishedRegistration = true;
 
     public Casablanca() {
         control = new Controller();
+        control.startTheProcessOfEditingDB();
 
         initComponents();
 
@@ -46,8 +50,6 @@ public class Casablanca extends javax.swing.JFrame {
 //        int regNo = r.getReservation_no();
 //        map.get(regNo);
 //        System.out.println(map.get(regNo));
-        
-        
         jLayeredPaneNewReservation.setVisible(false);
         jLayeredPaneReservations.setVisible(false);
         jLayeredPaneShowingGuestInformation.setVisible(false);
@@ -56,6 +58,56 @@ public class Casablanca extends javax.swing.JFrame {
         jTextAreaPrivateCleintInfo.setEditable(false);
         jComboBoxGuestsNumbeer.setEnabled(false);
 
+    }
+
+    private void addGuest() {
+        
+       
+
+       
+        control.creatingNewClient(jTextFieldName.getText(), jTextFieldSurname.getText(), jTextFieldAddress.getText());
+        control.creatingNewClientPrvInf(Integer.parseInt(jTextFieldPassport.getText()), jComboBoxCountry.getSelectedItem().toString(), Integer.parseInt(jTextFieldPhone.getText()), jTextFieldEmail.getText() + "@" + (String) jComboBoxPost.getSelectedItem(), jTextFieldAgency.getText());
+    }
+    
+    private void addSecondaryGuest() {
+        
+
+        control.creatingSecondaryClients(jTextFieldName.getText(), jTextFieldSurname.getText(), jTextFieldAddress.getText());
+        control.creatingNewClientPrvInf(Integer.parseInt(jTextFieldPassport.getText()), (String) jComboBoxCountry.getSelectedItem(), Integer.parseInt(jTextFieldPhone.getText()), jTextFieldEmail.getText() + "@" + (String) jComboBoxPost.getSelectedItem(), jTextFieldAgency.getText());
+    }
+
+    private void addReg() {
+        String arrival = jComboBoxDate.getSelectedItem() + "-" + jComboBoxMonth.getSelectedItem() + "-" + "20" + jComboBoxYear.getSelectedItem();
+        String Stringarrivaldate = (String) jComboBoxDate.getSelectedItem();
+        int arrivaldate = Integer.parseInt(Stringarrivaldate);
+        int nights = (Integer) jSpinnerStayingPeriod.getValue();
+        int departuredate = arrivaldate + nights;
+        String departure = departuredate + "-" + jComboBoxMonth.getSelectedItem() + "-" + "20" + jComboBoxYear.getSelectedItem();
+        String stringSelectedRoom = jListRooms.getSelectedValue().toString();
+        int selectedRoom = Integer.parseInt(stringSelectedRoom);
+
+        control.creatingNewReservation(arrival, departure, selectedRoom);
+    }
+    
+    private void lockShit()
+    {
+         String stringNoofGuests = "" + jComboBoxGuestsNumbeer.getSelectedItem();
+        noofGuests = Integer.parseInt(stringNoofGuests);
+        jLabeljError.setText("Guest #" + noofGuests);
+            jTextFieldName.setText("");
+            jTextFieldSurname.setText("");
+            jTextFieldAddress.setText("");
+            jTextFieldPassport.setText("");
+            jTextFieldPhone.setText("");
+            jTextFieldEmail.setText("");
+            jTextFieldAgency.setText("");
+            jComboBoxDate.setEnabled(false);
+            jComboBoxMonth.setEnabled(false);
+            jComboBoxYear.setEnabled(false);
+            jSpinnerStayingPeriod.setEnabled(false);
+            jComboBoxRoomType.setEnabled(false);
+            jListRooms.setEnabled(false);
+            jComboBoxGuestsNumbeer.setEnabled(false);
     }
 
     /**
@@ -92,17 +144,18 @@ public class Casablanca extends javax.swing.JFrame {
         jComboBoxRoomType = new javax.swing.JComboBox();
         jLabel13 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jList1 = new javax.swing.JList();
+        jListRooms = new javax.swing.JList();
         jComboBoxDate = new javax.swing.JComboBox();
         jComboBoxMonth = new javax.swing.JComboBox();
         jComboBoxYear = new javax.swing.JComboBox();
         jLabel12 = new javax.swing.JLabel();
-        jSpinner1 = new javax.swing.JSpinner();
+        jSpinnerStayingPeriod = new javax.swing.JSpinner();
         jLabel9 = new javax.swing.JLabel();
-        jError = new javax.swing.JLabel();
+        jLabeljError = new javax.swing.JLabel();
         jSeparator1 = new javax.swing.JSeparator();
         jLabel21 = new javax.swing.JLabel();
         jComboBoxGuestsNumbeer = new javax.swing.JComboBox();
+        jButton2 = new javax.swing.JButton();
         jLayeredPaneReservations = new javax.swing.JLayeredPane();
         jButtonDelete = new javax.swing.JButton();
         jScrollPane3 = new javax.swing.JScrollPane();
@@ -147,7 +200,12 @@ public class Casablanca extends javax.swing.JFrame {
 
         jLayeredPaneNewReservation.setPreferredSize(new java.awt.Dimension(480, 350));
 
-        jButtonRegister.setText("Submit");
+        jButtonRegister.setText("Add more");
+        jButtonRegister.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jButtonRegisterMouseClicked(evt);
+            }
+        });
         jButtonRegister.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButtonRegisterActionPerformed(evt);
@@ -198,8 +256,8 @@ public class Casablanca extends javax.swing.JFrame {
 
         jLabel13.setText("Rooms:");
 
-        jList1.setModel(freerooms);
-        jScrollPane1.setViewportView(jList1);
+        jListRooms.setModel(freerooms);
+        jScrollPane1.setViewportView(jListRooms);
 
         jComboBoxDate.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29", "30", "31" }));
 
@@ -219,11 +277,11 @@ public class Casablanca extends javax.swing.JFrame {
 
         jLabel12.setText("Arrival Date:");
 
-        jSpinner1.setModel(new javax.swing.SpinnerNumberModel(1, 1, 12, 1));
+        jSpinnerStayingPeriod.setModel(new javax.swing.SpinnerNumberModel(1, 1, 12, 1));
 
         jLabel9.setText("Staying period:");
 
-        jError.setForeground(new java.awt.Color(255, 0, 0));
+        jLabeljError.setForeground(new java.awt.Color(255, 0, 0));
 
         jLabel21.setText("Guests:");
 
@@ -231,6 +289,13 @@ public class Casablanca extends javax.swing.JFrame {
         jComboBoxGuestsNumbeer.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jComboBoxGuestsNumbeerActionPerformed(evt);
+            }
+        });
+
+        jButton2.setText("Done");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
             }
         });
 
@@ -256,13 +321,6 @@ public class Casablanca extends javax.swing.JFrame {
                         .addGap(27, 27, 27)
                         .addGroup(jLayeredPaneNewReservationLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addGroup(jLayeredPaneNewReservationLayout.createSequentialGroup()
-                                .addComponent(jError, javax.swing.GroupLayout.PREFERRED_SIZE, 186, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(jButtonRegister))
-                            .addGroup(jLayeredPaneNewReservationLayout.createSequentialGroup()
-                                .addComponent(jSpinner1, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(0, 0, Short.MAX_VALUE))
-                            .addGroup(jLayeredPaneNewReservationLayout.createSequentialGroup()
                                 .addGroup(jLayeredPaneNewReservationLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addGroup(jLayeredPaneNewReservationLayout.createSequentialGroup()
                                         .addGroup(jLayeredPaneNewReservationLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -273,7 +331,7 @@ public class Casablanca extends javax.swing.JFrame {
                                             .addComponent(jTextFieldPassport, javax.swing.GroupLayout.Alignment.TRAILING)
                                             .addGroup(jLayeredPaneNewReservationLayout.createSequentialGroup()
                                                 .addComponent(jComboBoxCountry, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                .addGap(0, 61, Short.MAX_VALUE)))
+                                                .addGap(0, 62, Short.MAX_VALUE)))
                                         .addGap(56, 56, 56))
                                     .addGroup(jLayeredPaneNewReservationLayout.createSequentialGroup()
                                         .addGroup(jLayeredPaneNewReservationLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -290,7 +348,10 @@ public class Casablanca extends javax.swing.JFrame {
                                                     .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                                     .addComponent(jLabel11)
                                                     .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                                    .addComponent(jComboBoxPost, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                                    .addComponent(jComboBoxPost, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                            .addGroup(jLayeredPaneNewReservationLayout.createSequentialGroup()
+                                                .addGap(100, 100, 100)
+                                                .addComponent(jButtonRegister)))
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                                 .addGroup(jLayeredPaneNewReservationLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                                     .addGroup(jLayeredPaneNewReservationLayout.createSequentialGroup()
@@ -307,7 +368,13 @@ public class Casablanca extends javax.swing.JFrame {
                                                 .addGap(27, 27, 27)))
                                         .addGroup(jLayeredPaneNewReservationLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                             .addComponent(jComboBoxGuestsNumbeer, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE))))))
+                                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                    .addComponent(jButton2)))
+                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jLayeredPaneNewReservationLayout.createSequentialGroup()
+                                .addGroup(jLayeredPaneNewReservationLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(jSpinnerStayingPeriod, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jLabeljError, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 186, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(0, 0, Short.MAX_VALUE)))
                         .addGap(34, 34, 34))
                     .addGroup(jLayeredPaneNewReservationLayout.createSequentialGroup()
                         .addComponent(jSeparator1)
@@ -366,14 +433,17 @@ public class Casablanca extends javax.swing.JFrame {
                     .addComponent(jComboBoxYear, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jLayeredPaneNewReservationLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jSpinner1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jSpinnerStayingPeriod, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel9))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jLayeredPaneNewReservationLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jError, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButtonRegister))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(jLayeredPaneNewReservationLayout.createSequentialGroup()
+                        .addGroup(jLayeredPaneNewReservationLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabeljError, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jButtonRegister, javax.swing.GroupLayout.Alignment.TRAILING))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jButton2))
                 .addContainerGap(79, Short.MAX_VALUE))
         );
         jLayeredPaneNewReservation.setLayer(jButtonRegister, javax.swing.JLayeredPane.DEFAULT_LAYER);
@@ -403,12 +473,13 @@ public class Casablanca extends javax.swing.JFrame {
         jLayeredPaneNewReservation.setLayer(jComboBoxMonth, javax.swing.JLayeredPane.DEFAULT_LAYER);
         jLayeredPaneNewReservation.setLayer(jComboBoxYear, javax.swing.JLayeredPane.DEFAULT_LAYER);
         jLayeredPaneNewReservation.setLayer(jLabel12, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        jLayeredPaneNewReservation.setLayer(jSpinner1, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        jLayeredPaneNewReservation.setLayer(jSpinnerStayingPeriod, javax.swing.JLayeredPane.DEFAULT_LAYER);
         jLayeredPaneNewReservation.setLayer(jLabel9, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        jLayeredPaneNewReservation.setLayer(jError, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        jLayeredPaneNewReservation.setLayer(jLabeljError, javax.swing.JLayeredPane.DEFAULT_LAYER);
         jLayeredPaneNewReservation.setLayer(jSeparator1, javax.swing.JLayeredPane.DEFAULT_LAYER);
         jLayeredPaneNewReservation.setLayer(jLabel21, javax.swing.JLayeredPane.DEFAULT_LAYER);
         jLayeredPaneNewReservation.setLayer(jComboBoxGuestsNumbeer, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        jLayeredPaneNewReservation.setLayer(jButton2, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         jLayeredPaneReservations.setPreferredSize(new java.awt.Dimension(480, 350));
 
@@ -585,6 +656,7 @@ public class Casablanca extends javax.swing.JFrame {
 
         jMenu1.setText("Clients Requests");
 
+        jMenuItem1.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_N, 0));
         jMenuItem1.setText("New Reservation");
         jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -667,7 +739,7 @@ public class Casablanca extends javax.swing.JFrame {
             jComboBoxGuestsNumbeer.setModel(jComboBoxGuestsNumbeer.getModel());
             jComboBoxGuestsNumbeer.addItem("1");
             jComboBoxGuestsNumbeer.addItem("2");
-            
+
             jComboBoxGuestsNumbeer.setSelectedIndex(1);
         } else if (jComboBoxRoomType.getSelectedItem().equals("Family Room")) {
             jComboBoxGuestsNumbeer.setEnabled(true);
@@ -687,40 +759,31 @@ public class Casablanca extends javax.swing.JFrame {
 
     private void jButtonRegisterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonRegisterActionPerformed
         //Getting info from Fields,ComboBoxes,Spinners + Parsing
-        String name = jTextFieldName.getText();
-        String surname = jTextFieldSurname.getText();
-        String address = jTextFieldAddress.getText();
-        String stringPassport = jTextFieldPassport.getText();
-        int passport = Integer.parseInt(stringPassport);
-        String country = (String) jComboBoxCountry.getSelectedItem();
-        String stringPhone = jTextFieldPhone.getText();
-        int phone = Integer.parseInt(stringPhone);
-        String email = jTextFieldEmail.getText() + "@" + (String) jComboBoxPost.getSelectedItem();
-        String agency = jTextFieldAgency.getText();
-        String arrival = jComboBoxDate.getSelectedItem() + "-" + jComboBoxMonth.getSelectedItem() + "-" + "20" + jComboBoxYear.getSelectedItem();
-        String Stringarrivaldate = (String) jComboBoxDate.getSelectedItem();
-        int arrivaldate = Integer.parseInt(Stringarrivaldate);
-        int nights = (Integer) jSpinner1.getValue();
-        int departuredate = arrivaldate + nights;
-        String departure = departuredate + "-" + jComboBoxMonth.getSelectedItem() + "-" + "20" + jComboBoxYear.getSelectedItem();
-        String stringSelectedRoom = jList1.getSelectedValue().toString();
-        int selectedRoom = Integer.parseInt(stringSelectedRoom);
-
-        control.creatingNewClient(name, surname, address);
-        control.creatingClientPrivateInformation(passport, country, phone, email, agency);
-        control.addNewReservation(arrival, departure, selectedRoom);
-
-        freerooms.clear();
-        List<Room> listofRooms = control.getFreeRooms("Single Room");
-        for (int i = 0; i < listofRooms.size(); i++) {
-            freerooms.addElement(listofRooms.get(i));
-        }
-        
-        String stringNoofGuests = "" + jComboBoxGuestsNumbeer.getSelectedItem();
-        int noofGuests = Integer.parseInt(stringNoofGuests);
-        for (int i = 0; i < noofGuests; i++) {
+        if (noofGuests == 0) {
+            addGuest();
+            addReg();
+//            String stringNoofGuests = "" + jComboBoxGuestsNumbeer.getSelectedItem();
+//        noofGuests = Integer.parseInt(stringNoofGuests);
+            lockShit();
+            System.out.println("first");
+            
+          
             
         }
+            
+        
+        else
+            addGuest();
+            noofGuests = 0;
+            System.out.println("Secondary");
+        
+
+//        freerooms.clear();
+//        List<Room> listofRooms = control.getFreeRooms("Single Room");
+//        for (int i = 0; i < listofRooms.size(); i++) {
+//            freerooms.addElement(listofRooms.get(i));
+        
+
 
 
     }//GEN-LAST:event_jButtonRegisterActionPerformed
@@ -766,7 +829,7 @@ public class Casablanca extends javax.swing.JFrame {
         for (Map.Entry<Integer, Reservation> entry : map.entrySet()) {
             reservations.addElement(entry.getValue());
         }
-                    
+
     }//GEN-LAST:event_jButtonDeleteActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
@@ -803,6 +866,15 @@ public class Casablanca extends javax.swing.JFrame {
     private void jComboBoxGuestsNumbeerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBoxGuestsNumbeerActionPerformed
 
     }//GEN-LAST:event_jComboBoxGuestsNumbeerActionPerformed
+
+    private void jButtonRegisterMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButtonRegisterMouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButtonRegisterMouseClicked
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        control.endTheProcessOfEditingDB();
+           
+    }//GEN-LAST:event_jButton2ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -841,6 +913,7 @@ public class Casablanca extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton2;
     private javax.swing.JButton jButtonDelete;
     private javax.swing.JButton jButtonRegister;
     private javax.swing.JComboBox jComboBoxCountry;
@@ -851,7 +924,6 @@ public class Casablanca extends javax.swing.JFrame {
     private javax.swing.JComboBox jComboBoxRoomType;
     private javax.swing.JComboBox jComboBoxRoomType1;
     private javax.swing.JComboBox jComboBoxYear;
-    private javax.swing.JLabel jError;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
@@ -872,14 +944,15 @@ public class Casablanca extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
+    private javax.swing.JLabel jLabeljError;
     private javax.swing.JLayeredPane jLayeredPane1;
     private javax.swing.JLayeredPane jLayeredPaneFreeRooms;
     private javax.swing.JLayeredPane jLayeredPaneNewReservation;
     private javax.swing.JLayeredPane jLayeredPaneReservations;
     private javax.swing.JLayeredPane jLayeredPaneShowingGuestInformation;
-    private javax.swing.JList jList1;
     private javax.swing.JList jList3;
     private javax.swing.JList jListReservations;
+    private javax.swing.JList jListRooms;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenuBar jMenuBar1;
@@ -893,7 +966,7 @@ public class Casablanca extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane4;
     private javax.swing.JScrollPane jScrollPane5;
     private javax.swing.JSeparator jSeparator1;
-    private javax.swing.JSpinner jSpinner1;
+    private javax.swing.JSpinner jSpinnerStayingPeriod;
     private javax.swing.JTextArea jTextAreaClientInfo;
     private javax.swing.JTextArea jTextAreaPrivateCleintInfo;
     private javax.swing.JTextField jTextFieldAddress;
