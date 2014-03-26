@@ -762,7 +762,7 @@ public class Casablanca extends javax.swing.JFrame {
         if (noofGuests == 0) {
             addGuest();
             addReg();
-//            String stringNoofGuests = "" + jComboBoxGuestsNumbeer.getSelectedItem();
+//        String stringNoofGuests = "" + jComboBoxGuestsNumbeer.getSelectedItem();
 //        noofGuests = Integer.parseInt(stringNoofGuests);
             lockShit();
             System.out.println("first");
