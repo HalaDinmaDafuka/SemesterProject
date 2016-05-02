@@ -1,8 +1,8 @@
-package casablankarabbit;
+package presentationTwo;
 
-import Control.Controller;
-import Entity.Reservation;
-import Entity.Room;
+import control.Controller;
+import entity.Reservation;
+import entity.Room;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
@@ -139,8 +139,7 @@ public class Casablanca extends javax.swing.JFrame
      */
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
-    private void initComponents()
-    {
+    private void initComponents() {
 
         jLayeredPane1 = new javax.swing.JLayeredPane();
         jLayeredPaneNewReservation = new javax.swing.JLayeredPane();
@@ -224,17 +223,13 @@ public class Casablanca extends javax.swing.JFrame
         jLayeredPaneNewReservation.setPreferredSize(new java.awt.Dimension(480, 350));
 
         jButtonAdd.setText("Add");
-        jButtonAdd.addMouseListener(new java.awt.event.MouseAdapter()
-        {
-            public void mouseClicked(java.awt.event.MouseEvent evt)
-            {
+        jButtonAdd.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jButtonAddMouseClicked(evt);
             }
         });
-        jButtonAdd.addActionListener(new java.awt.event.ActionListener()
-        {
-            public void actionPerformed(java.awt.event.ActionEvent evt)
-            {
+        jButtonAdd.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButtonAddActionPerformed(evt);
             }
         });
@@ -243,10 +238,8 @@ public class Casablanca extends javax.swing.JFrame
 
         jLabel2.setText("Surname:");
 
-        jTextFieldSurname.addActionListener(new java.awt.event.ActionListener()
-        {
-            public void actionPerformed(java.awt.event.ActionEvent evt)
-            {
+        jTextFieldSurname.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jTextFieldSurnameActionPerformed(evt);
             }
         });
@@ -258,10 +251,8 @@ public class Casablanca extends javax.swing.JFrame
         jLabel5.setText("Country:");
 
         jComboBoxCountry.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Denmark", "Bulgaria", "Romania" }));
-        jComboBoxCountry.addActionListener(new java.awt.event.ActionListener()
-        {
-            public void actionPerformed(java.awt.event.ActionEvent evt)
-            {
+        jComboBoxCountry.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jComboBoxCountryActionPerformed(evt);
             }
         });
@@ -279,10 +270,8 @@ public class Casablanca extends javax.swing.JFrame
         jLabel10.setText("Type:");
 
         jComboBoxRoomType.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Single Room", "Double Room", "Family Room" }));
-        jComboBoxRoomType.addActionListener(new java.awt.event.ActionListener()
-        {
-            public void actionPerformed(java.awt.event.ActionEvent evt)
-            {
+        jComboBoxRoomType.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jComboBoxRoomTypeActionPerformed(evt);
             }
         });
@@ -295,19 +284,15 @@ public class Casablanca extends javax.swing.JFrame
         jComboBoxDate.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29", "30", "31" }));
 
         jComboBoxMonth.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "JAN", "FEB", "MAR", "APR", "MAY", "JUN", "JUL", "AUG", "SEP", "OCT", "NOV", "DEC" }));
-        jComboBoxMonth.addActionListener(new java.awt.event.ActionListener()
-        {
-            public void actionPerformed(java.awt.event.ActionEvent evt)
-            {
+        jComboBoxMonth.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jComboBoxMonthActionPerformed(evt);
             }
         });
 
         jComboBoxYear.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "14", "15" }));
-        jComboBoxYear.addActionListener(new java.awt.event.ActionListener()
-        {
-            public void actionPerformed(java.awt.event.ActionEvent evt)
-            {
+        jComboBoxYear.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jComboBoxYearActionPerformed(evt);
             }
         });
@@ -323,19 +308,15 @@ public class Casablanca extends javax.swing.JFrame
         jLabel21.setText("Guests:");
 
         jComboBoxGuestsNumbeer.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "1" }));
-        jComboBoxGuestsNumbeer.addActionListener(new java.awt.event.ActionListener()
-        {
-            public void actionPerformed(java.awt.event.ActionEvent evt)
-            {
+        jComboBoxGuestsNumbeer.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jComboBoxGuestsNumbeerActionPerformed(evt);
             }
         });
 
         jButtonSubmitButton.setText("Done");
-        jButtonSubmitButton.addActionListener(new java.awt.event.ActionListener()
-        {
-            public void actionPerformed(java.awt.event.ActionEvent evt)
-            {
+        jButtonSubmitButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButtonSubmitButtonActionPerformed(evt);
             }
         });
@@ -373,7 +354,7 @@ public class Casablanca extends javax.swing.JFrame
                                             .addComponent(jTextFieldPassport, javax.swing.GroupLayout.Alignment.TRAILING)
                                             .addGroup(jLayeredPaneNewReservationLayout.createSequentialGroup()
                                                 .addComponent(jComboBoxCountry, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                .addGap(0, 61, Short.MAX_VALUE)))
+                                                .addGap(0, 0, Short.MAX_VALUE)))
                                         .addGap(56, 56, 56))
                                     .addGroup(jLayeredPaneNewReservationLayout.createSequentialGroup()
                                         .addGroup(jLayeredPaneNewReservationLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -483,7 +464,7 @@ public class Casablanca extends javax.swing.JFrame
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(jButtonSubmitButton))
-                .addContainerGap(79, Short.MAX_VALUE))
+                .addContainerGap(57, Short.MAX_VALUE))
         );
         jLayeredPaneNewReservation.setLayer(jButtonAdd, javax.swing.JLayeredPane.DEFAULT_LAYER);
         jLayeredPaneNewReservation.setLayer(jLabel1, javax.swing.JLayeredPane.DEFAULT_LAYER);
@@ -523,10 +504,8 @@ public class Casablanca extends javax.swing.JFrame
         jLayeredPaneReservations.setPreferredSize(new java.awt.Dimension(480, 350));
 
         jButtonDelete.setText("Delete");
-        jButtonDelete.addActionListener(new java.awt.event.ActionListener()
-        {
-            public void actionPerformed(java.awt.event.ActionEvent evt)
-            {
+        jButtonDelete.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButtonDeleteActionPerformed(evt);
             }
         });
@@ -555,7 +534,7 @@ public class Casablanca extends javax.swing.JFrame
                     .addGroup(jLayeredPaneReservationsLayout.createSequentialGroup()
                         .addGap(145, 145, 145)
                         .addComponent(jLabel17)))
-                .addContainerGap(45, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jLayeredPaneReservationsLayout.setVerticalGroup(
             jLayeredPaneReservationsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -568,7 +547,7 @@ public class Casablanca extends javax.swing.JFrame
                 .addComponent(jButtonDelete)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel17)
-                .addContainerGap(156, Short.MAX_VALUE))
+                .addContainerGap(150, Short.MAX_VALUE))
         );
         jLayeredPaneReservations.setLayer(jButtonDelete, javax.swing.JLayeredPane.DEFAULT_LAYER);
         jLayeredPaneReservations.setLayer(jScrollPane3, javax.swing.JLayeredPane.DEFAULT_LAYER);
@@ -588,10 +567,8 @@ public class Casablanca extends javax.swing.JFrame
         jLabel16.setText("Show GuestInfo:");
 
         jButton1.setText("Show");
-        jButton1.addActionListener(new java.awt.event.ActionListener()
-        {
-            public void actionPerformed(java.awt.event.ActionEvent evt)
-            {
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
             }
         });
@@ -604,7 +581,7 @@ public class Casablanca extends javax.swing.JFrame
                 .addGap(27, 27, 27)
                 .addComponent(jLabel16)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jTextFieldShowGuestInformation, javax.swing.GroupLayout.DEFAULT_SIZE, 129, Short.MAX_VALUE)
+                .addComponent(jTextFieldShowGuestInformation)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jButton1)
                 .addGap(174, 174, 174))
@@ -623,7 +600,7 @@ public class Casablanca extends javax.swing.JFrame
                     .addComponent(jButton1))
                 .addGap(18, 18, 18)
                 .addGroup(jLayeredPaneShowingGuestInformationLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 125, Short.MAX_VALUE)
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 123, Short.MAX_VALUE)
                     .addComponent(jScrollPane4))
                 .addGap(144, 144, 144))
         );
@@ -641,10 +618,8 @@ public class Casablanca extends javax.swing.JFrame
         jScrollPane5.setViewportView(jList3);
 
         jComboBoxRoomType1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Single Room", "Double Room", "Family Room" }));
-        jComboBoxRoomType1.addActionListener(new java.awt.event.ActionListener()
-        {
-            public void actionPerformed(java.awt.event.ActionEvent evt)
-            {
+        jComboBoxRoomType1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jComboBoxRoomType1ActionPerformed(evt);
             }
         });
@@ -703,10 +678,8 @@ public class Casablanca extends javax.swing.JFrame
 
         jMenuItem1.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_N, 0));
         jMenuItem1.setText("New Reservation");
-        jMenuItem1.addActionListener(new java.awt.event.ActionListener()
-        {
-            public void actionPerformed(java.awt.event.ActionEvent evt)
-            {
+        jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jMenuItem1ActionPerformed(evt);
             }
         });
@@ -718,30 +691,24 @@ public class Casablanca extends javax.swing.JFrame
 
         jMenuItem2.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_R, java.awt.event.InputEvent.CTRL_MASK));
         jMenuItem2.setText("Reservations");
-        jMenuItem2.addActionListener(new java.awt.event.ActionListener()
-        {
-            public void actionPerformed(java.awt.event.ActionEvent evt)
-            {
+        jMenuItem2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jMenuItem2ActionPerformed(evt);
             }
         });
         jMenu2.add(jMenuItem2);
 
         jMenuItem3.setText("Client Information");
-        jMenuItem3.addActionListener(new java.awt.event.ActionListener()
-        {
-            public void actionPerformed(java.awt.event.ActionEvent evt)
-            {
+        jMenuItem3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jMenuItem3ActionPerformed(evt);
             }
         });
         jMenu2.add(jMenuItem3);
 
         jMenuItem4.setText("Free Rooms");
-        jMenuItem4.addActionListener(new java.awt.event.ActionListener()
-        {
-            public void actionPerformed(java.awt.event.ActionEvent evt)
-            {
+        jMenuItem4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jMenuItem4ActionPerformed(evt);
             }
         });
@@ -755,10 +722,10 @@ public class Casablanca extends javax.swing.JFrame
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLayeredPaneNewReservation, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(jLayeredPaneReservations, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(jLayeredPaneShowingGuestInformation, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(jLayeredPaneFreeRooms, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jLayeredPaneNewReservation, javax.swing.GroupLayout.DEFAULT_SIZE, 590, Short.MAX_VALUE)
+            .addComponent(jLayeredPaneReservations, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 590, Short.MAX_VALUE)
+            .addComponent(jLayeredPaneShowingGuestInformation, javax.swing.GroupLayout.DEFAULT_SIZE, 590, Short.MAX_VALUE)
+            .addComponent(jLayeredPaneFreeRooms, javax.swing.GroupLayout.DEFAULT_SIZE, 590, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)

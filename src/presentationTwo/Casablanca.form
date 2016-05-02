@@ -97,10 +97,10 @@
   <Layout>
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
-          <Component id="jLayeredPaneNewReservation" max="32767" attributes="0"/>
-          <Component id="jLayeredPaneReservations" alignment="1" max="32767" attributes="0"/>
-          <Component id="jLayeredPaneShowingGuestInformation" alignment="0" max="32767" attributes="0"/>
-          <Component id="jLayeredPaneFreeRooms" alignment="0" max="32767" attributes="0"/>
+          <Component id="jLayeredPaneNewReservation" pref="590" max="32767" attributes="0"/>
+          <Component id="jLayeredPaneReservations" alignment="1" pref="590" max="32767" attributes="0"/>
+          <Component id="jLayeredPaneShowingGuestInformation" alignment="0" pref="590" max="32767" attributes="0"/>
+          <Component id="jLayeredPaneFreeRooms" alignment="0" pref="590" max="32767" attributes="0"/>
       </Group>
     </DimensionLayout>
     <DimensionLayout dim="1">
@@ -158,7 +158,7 @@
                                               <Component id="jTextFieldPassport" alignment="1" max="32767" attributes="0"/>
                                               <Group type="102" alignment="0" attributes="0">
                                                   <Component id="jComboBoxCountry" min="-2" max="-2" attributes="0"/>
-                                                  <EmptySpace min="0" pref="61" max="32767" attributes="0"/>
+                                                  <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                                               </Group>
                                           </Group>
                                           <EmptySpace min="-2" pref="56" max="-2" attributes="0"/>
@@ -308,7 +308,7 @@
                       </Group>
                       <Component id="jButtonSubmitButton" min="-2" max="-2" attributes="0"/>
                   </Group>
-                  <EmptySpace pref="79" max="32767" attributes="0"/>
+                  <EmptySpace pref="57" max="32767" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -606,7 +606,7 @@
                           <Component id="jLabel17" min="-2" max="-2" attributes="0"/>
                       </Group>
                   </Group>
-                  <EmptySpace pref="45" max="32767" attributes="0"/>
+                  <EmptySpace max="32767" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -621,7 +621,7 @@
                   <Component id="jButtonDelete" min="-2" max="-2" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
                   <Component id="jLabel17" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace pref="156" max="32767" attributes="0"/>
+                  <EmptySpace pref="150" max="32767" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -677,7 +677,7 @@
                   <EmptySpace min="-2" pref="27" max="-2" attributes="0"/>
                   <Component id="jLabel16" min="-2" max="-2" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
-                  <Component id="jTextFieldShowGuestInformation" pref="129" max="32767" attributes="0"/>
+                  <Component id="jTextFieldShowGuestInformation" max="32767" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
                   <Component id="jButton1" min="-2" max="-2" attributes="0"/>
                   <EmptySpace min="-2" pref="174" max="-2" attributes="0"/>
@@ -700,7 +700,7 @@
                   </Group>
                   <EmptySpace type="separate" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <Component id="jScrollPane2" pref="125" max="32767" attributes="0"/>
+                      <Component id="jScrollPane2" pref="123" max="32767" attributes="0"/>
                       <Component id="jScrollPane4" max="32767" attributes="0"/>
                   </Group>
                   <EmptySpace min="-2" pref="144" max="-2" attributes="0"/>

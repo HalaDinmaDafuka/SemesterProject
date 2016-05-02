@@ -2,11 +2,11 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package Facade;
+package facade;
 
-import Entity.Client;
-import Entity.Reservation;
-import Entity.Room;
+import entity.Client;
+import entity.Reservation;
+import entity.Room;
 import dataSource.ClientMapper;
 import dataSource.DatabaseConnection;
 import dataSource.ReservationMapper;

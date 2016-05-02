@@ -2,10 +2,10 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package casablankarabbit;
+package presentationTwo;
 
-import Control.Controller;
-import Entity.Client;
+import control.Controller;
+import entity.Client;
 
 /**
  *

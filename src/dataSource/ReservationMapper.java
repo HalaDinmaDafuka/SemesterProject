@@ -4,8 +4,8 @@
  */
 package dataSource;
 
-import Entity.Client;
-import Entity.Reservation;
+import entity.Client;
+import entity.Reservation;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;

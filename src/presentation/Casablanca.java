@@ -1,3 +1,5 @@
+package presentation;
+
 
 import domain.Controller;
 import domain.Reservation;
@@ -331,7 +333,7 @@ public class Casablanca extends javax.swing.JFrame {
                                             .addComponent(jTextFieldPassport, javax.swing.GroupLayout.Alignment.TRAILING)
                                             .addGroup(jLayeredPaneNewReservationLayout.createSequentialGroup()
                                                 .addComponent(jComboBoxCountry, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                .addGap(0, 62, Short.MAX_VALUE)))
+                                                .addGap(0, 0, Short.MAX_VALUE)))
                                         .addGap(56, 56, 56))
                                     .addGroup(jLayeredPaneNewReservationLayout.createSequentialGroup()
                                         .addGroup(jLayeredPaneNewReservationLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -444,7 +446,7 @@ public class Casablanca extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(jButton2))
-                .addContainerGap(79, Short.MAX_VALUE))
+                .addContainerGap(57, Short.MAX_VALUE))
         );
         jLayeredPaneNewReservation.setLayer(jButtonRegister, javax.swing.JLayeredPane.DEFAULT_LAYER);
         jLayeredPaneNewReservation.setLayer(jLabel1, javax.swing.JLayeredPane.DEFAULT_LAYER);
@@ -514,7 +516,7 @@ public class Casablanca extends javax.swing.JFrame {
                     .addGroup(jLayeredPaneReservationsLayout.createSequentialGroup()
                         .addGap(145, 145, 145)
                         .addComponent(jLabel17)))
-                .addContainerGap(45, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jLayeredPaneReservationsLayout.setVerticalGroup(
             jLayeredPaneReservationsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -527,7 +529,7 @@ public class Casablanca extends javax.swing.JFrame {
                 .addComponent(jButtonDelete)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel17)
-                .addContainerGap(156, Short.MAX_VALUE))
+                .addContainerGap(150, Short.MAX_VALUE))
         );
         jLayeredPaneReservations.setLayer(jButtonDelete, javax.swing.JLayeredPane.DEFAULT_LAYER);
         jLayeredPaneReservations.setLayer(jScrollPane3, javax.swing.JLayeredPane.DEFAULT_LAYER);
@@ -561,7 +563,7 @@ public class Casablanca extends javax.swing.JFrame {
                 .addGap(27, 27, 27)
                 .addComponent(jLabel16)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jTextFieldShowGuestInformation, javax.swing.GroupLayout.DEFAULT_SIZE, 129, Short.MAX_VALUE)
+                .addComponent(jTextFieldShowGuestInformation)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jButton1)
                 .addGap(174, 174, 174))
@@ -580,7 +582,7 @@ public class Casablanca extends javax.swing.JFrame {
                     .addComponent(jButton1))
                 .addGap(18, 18, 18)
                 .addGroup(jLayeredPaneShowingGuestInformationLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 125, Short.MAX_VALUE)
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 123, Short.MAX_VALUE)
                     .addComponent(jScrollPane4))
                 .addGap(144, 144, 144))
         );
@@ -702,10 +704,10 @@ public class Casablanca extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLayeredPaneNewReservation, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(jLayeredPaneReservations, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(jLayeredPaneShowingGuestInformation, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(jLayeredPaneFreeRooms, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jLayeredPaneNewReservation, javax.swing.GroupLayout.DEFAULT_SIZE, 591, Short.MAX_VALUE)
+            .addComponent(jLayeredPaneReservations, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 591, Short.MAX_VALUE)
+            .addComponent(jLayeredPaneShowingGuestInformation, javax.swing.GroupLayout.DEFAULT_SIZE, 591, Short.MAX_VALUE)
+            .addComponent(jLayeredPaneFreeRooms, javax.swing.GroupLayout.DEFAULT_SIZE, 591, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)

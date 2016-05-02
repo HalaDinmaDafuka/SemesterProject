@@ -2,12 +2,12 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package Control;
+package control;
 
-import Entity.Client;
-import Entity.Reservation;
-import Entity.Room;
-import Facade.DatabaseFacade;
+import entity.Client;
+import entity.Reservation;
+import entity.Room;
+import facade.DatabaseFacade;
 import java.util.ArrayList;
 import java.util.HashMap;
 
