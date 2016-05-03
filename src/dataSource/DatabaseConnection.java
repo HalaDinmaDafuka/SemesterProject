@@ -14,8 +14,8 @@ import java.sql.SQLException;
  */
 public class DatabaseConnection
 {
-    private static final String id = "cphnd37"; //Insert ORACLE id and password
-    private static final String pw = "cphnd37";
+    private static final String id = "SEM2_GR23"; //Our project DB ACC AND PW
+    private static final String pw = "SEM2_GR23";
     private static Connection connection;
 
     private static void intializeConnection() {
