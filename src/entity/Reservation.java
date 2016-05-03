@@ -1,7 +1,3 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 package entity;
 
 import java.sql.Date;
@@ -16,7 +12,7 @@ public class Reservation {
     private String deposit;
     private Date reservation_date;
 
-    public Reservation(int reservation_no, Date client_arrival, Date client_departure, int client_no, int room_no, String deposit, Date reservation_date) {
+    public Reservation( int reservation_no, Date client_arrival, Date client_departure, int client_no, int room_no, String deposit, Date reservation_date ) {
         this.reservation_no = reservation_no;
         this.client_arrival = client_arrival;
         this.client_departure = client_departure;
@@ -25,8 +21,9 @@ public class Reservation {
         this.deposit = deposit;
         this.reservation_date = reservation_date;
     }
+
     //for emails
-    public Reservation(Date client_arrival, Date client_departure, int room_no, String deposit, Date reservation_date) {
+    public Reservation( Date client_arrival, Date client_departure, int room_no, String deposit, Date reservation_date ) {
         this.client_arrival = client_arrival;
         this.client_departure = client_departure;
         this.room_no = room_no;
@@ -38,7 +35,7 @@ public class Reservation {
         return reservation_date;
     }
 
-    public void setResercation_date(Date resercation_date) {
+    public void setResercation_date( Date resercation_date ) {
         this.reservation_date = resercation_date;
     }
 
@@ -46,7 +43,7 @@ public class Reservation {
         return client_arrival;
     }
 
-    public void setClient_arrival(Date client_arrival) {
+    public void setClient_arrival( Date client_arrival ) {
         this.client_arrival = client_arrival;
     }
 
@@ -54,7 +51,7 @@ public class Reservation {
         return client_departure;
     }
 
-    public void setClient_departure(Date client_departure) {
+    public void setClient_departure( Date client_departure ) {
         this.client_departure = client_departure;
     }
 
@@ -62,7 +59,7 @@ public class Reservation {
         return reservation_no;
     }
 
-    public void setReservation_no(int reservation_no) {
+    public void setReservation_no( int reservation_no ) {
         this.reservation_no = reservation_no;
     }
 
@@ -70,7 +67,7 @@ public class Reservation {
         return client_no;
     }
 
-    public void setClient_no(int client_no) {
+    public void setClient_no( int client_no ) {
         this.client_no = client_no;
     }
 
@@ -78,7 +75,7 @@ public class Reservation {
         return room_no;
     }
 
-    public void setRoom_no(int room_no) {
+    public void setRoom_no( int room_no ) {
         this.room_no = room_no;
     }
 
@@ -86,7 +83,7 @@ public class Reservation {
         return deposit;
     }
 
-    public void setDeposit(String deposit) {
+    public void setDeposit( String deposit ) {
         this.deposit = deposit;
     }
 

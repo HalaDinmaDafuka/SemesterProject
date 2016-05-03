@@ -1,7 +1,3 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 package entity;
 
 public class Client {
@@ -18,7 +14,7 @@ public class Client {
     private String client_agency;
 
     //Combining all info from both sql tables.
-    public Client(int client_no, String client_name, String client_surname, String client_address, int representative_no, int client_passport, String client_country, int client_phone, String client_email, String client_agency) {
+    public Client( int client_no, String client_name, String client_surname, String client_address, int representative_no, int client_passport, String client_country, int client_phone, String client_email, String client_agency ) {
         this.client_no = client_no;
         this.client_name = client_name;
         this.client_surname = client_surname;
@@ -32,7 +28,7 @@ public class Client {
     }
 
     //General information
-    public Client(int client_no, String client_name, String client_surname, String client_address) {
+    public Client( int client_no, String client_name, String client_surname, String client_address ) {
         this.client_no = client_no;
         this.client_name = client_name;
         this.client_surname = client_surname;
@@ -40,7 +36,7 @@ public class Client {
     }
 
     //Secondary client
-    public Client(int client_no, String client_name, String client_surname, String client_address, int representative_no) {
+    public Client( int client_no, String client_name, String client_surname, String client_address, int representative_no ) {
         this.client_no = client_no;
         this.client_name = client_name;
         this.client_surname = client_surname;
@@ -49,7 +45,7 @@ public class Client {
     }
 
     //Secondary information
-    public Client(int client_no, int client_passport, String client_country, int client_phone, String client_email, String client_agency) {
+    public Client( int client_no, int client_passport, String client_country, int client_phone, String client_email, String client_agency ) {
         this.client_no = client_no;
         this.client_passport = client_passport;
         this.client_country = client_country;
@@ -59,7 +55,7 @@ public class Client {
     }
 
     //For The Email
-    public Client(String client_name, String client_surname, String client_address, int client_passport, String client_country, int client_phone, String client_email) {
+    public Client( String client_name, String client_surname, String client_address, int client_passport, String client_country, int client_phone, String client_email ) {
         this.client_name = client_name;
         this.client_surname = client_surname;
         this.client_address = client_address;
@@ -73,7 +69,7 @@ public class Client {
         return client_no;
     }
 
-    public void setClient_no(int client_no) {
+    public void setClient_no( int client_no ) {
         this.client_no = client_no;
     }
 
@@ -81,7 +77,7 @@ public class Client {
         return client_name;
     }
 
-    public void setClient_name(String client_name) {
+    public void setClient_name( String client_name ) {
         this.client_name = client_name;
     }
 
@@ -89,7 +85,7 @@ public class Client {
         return client_surname;
     }
 
-    public void setClient_surname(String client_surname) {
+    public void setClient_surname( String client_surname ) {
         this.client_surname = client_surname;
     }
 
@@ -97,7 +93,7 @@ public class Client {
         return client_address;
     }
 
-    public void setClient_address(String client_address) {
+    public void setClient_address( String client_address ) {
         this.client_address = client_address;
     }
 
@@ -105,7 +101,7 @@ public class Client {
         return client_passport;
     }
 
-    public void setClient_passport(int client_passport) {
+    public void setClient_passport( int client_passport ) {
         this.client_passport = client_passport;
     }
 
@@ -113,7 +109,7 @@ public class Client {
         return client_country;
     }
 
-    public void setClient_country(String client_country) {
+    public void setClient_country( String client_country ) {
         this.client_country = client_country;
     }
 
@@ -121,7 +117,7 @@ public class Client {
         return client_phone;
     }
 
-    public void setClient_phone(int client_phone) {
+    public void setClient_phone( int client_phone ) {
         this.client_phone = client_phone;
     }
 
@@ -129,7 +125,7 @@ public class Client {
         return client_email;
     }
 
-    public void setClient_email(String client_email) {
+    public void setClient_email( String client_email ) {
         this.client_email = client_email;
     }
 
@@ -137,7 +133,7 @@ public class Client {
         return client_agency;
     }
 
-    public void setClient_agency(String client_agency) {
+    public void setClient_agency( String client_agency ) {
         this.client_agency = client_agency;
     }
 
@@ -145,7 +141,7 @@ public class Client {
         return representative_no;
     }
 
-    public void setRepresentative_no(int representative_no) {
+    public void setRepresentative_no( int representative_no ) {
         this.representative_no = representative_no;
     }
 

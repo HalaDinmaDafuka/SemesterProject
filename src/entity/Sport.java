@@ -1,13 +1,13 @@
-
 package entity;
 
 public class Sport {
+
     String sport_name;
     int min_players;
     int max_players;
     int price_instructor;
 
-    public Sport(String sport_name, int min_players, int max_players, int price_instructor) {
+    public Sport( String sport_name, int min_players, int max_players, int price_instructor ) {
         this.sport_name = sport_name;
         this.min_players = min_players;
         this.max_players = max_players;
@@ -18,7 +18,7 @@ public class Sport {
         return sport_name;
     }
 
-    public void setSport_name(String sport_name) {
+    public void setSport_name( String sport_name ) {
         this.sport_name = sport_name;
     }
 
@@ -26,16 +26,15 @@ public class Sport {
         return price_instructor;
     }
 
-    public void setPrice_instructor(int price_instructor) {
+    public void setPrice_instructor( int price_instructor ) {
         this.price_instructor = price_instructor;
     }
-    
-    
+
     public int getMin_players() {
         return min_players;
     }
 
-    public void setMin_players(int min_players) {
+    public void setMin_players( int min_players ) {
         this.min_players = min_players;
     }
 
@@ -43,11 +42,11 @@ public class Sport {
         return max_players;
     }
 
-    public void setMax_players(int max_players) {
+    public void setMax_players( int max_players ) {
         this.max_players = max_players;
     }
-    
-        @Override
+
+    @Override
     public String toString() {
         return "Sport name: " + sport_name + ", Instructor price :" + price_instructor + '}';
     }
